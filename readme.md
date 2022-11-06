@@ -76,6 +76,24 @@ For each model trained in previous component, accuracy and macro f1 score are co
      alt="Markdown Monster icon"
      style="float: center; margin-right: 10px;width:702px;height:402px;" />
 
+## Results
+
+### Confusion Matrix
+<img src="img4.png"
+     alt="Markdown Monster icon"
+     style="float: center; margin-right: 10px;width:400px;height:300;" />
+
+### Per class Accuracy
+<img src="img5.png"
+     alt="Markdown Monster icon"
+     style="float: center; margin-right: 10px;width:400px;height:300;" />
+
+According to the diagram above, we can see tag b has the highest precision, recall, and f1 (tag b is Acknowledge). Classes such as sd also has a high f1 score. These classes are easier to predict than other classes might be because they have much more audio clues and text clues. For example, acknowledgement might have a significantly high intensity than other tags.
+
+From above classification report and confusion matrix, the model performed worst on sd^e (Statement expanding y/n answer) because it was confused with sd, and all of the sd^e had been classified as sd (statement non opinion). This might be due to model find these two tags really similar, thus cannot tell them apart since both of them are statements. One possible fix might be the feature sets should also include tag of previous sentences, so the model can distinguist whether current sentence is an answer to a question or a statement. 
+
+The other common errors are lots of sd (Statement-non-opinion) are classified as % (Abandoned or Turn-Exit) and + (continuation). This might be because the sentence was suitable of multiple labels, but transcript only has 1 label. 
+
 ## Important
 <b>All answers to questions can be found in corresponding notebook section</b>: hypothesis and result analysis can be found in `section 4: Analysis & Hypothesis` in **`feature_extraction_and_analysis.ipynb`**; model analysis questions' answer can be found in `section 2.2: Model Analysis` in **`classification.ipynb`**.
 
